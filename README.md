@@ -182,7 +182,7 @@ To list out all the permissions for all the users on each organisation
 Code and API structure
 ---------------------------------------
 
-1.Firstly I connected my django project to MongoDB with the help of djongo and pymongo packages.
+1.Firstly I connected my django project to MongoDB with the help of djongo and pymongo packages.Then created a new app and named that app 'api'.
 
 2.I created models for users and organisations.Though django provides built in table for users ,but I created a separate table for that.
 
