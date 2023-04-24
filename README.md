@@ -1,3 +1,23 @@
+To run the code follow the following steps:
+---------------------------------------------------
+1.pip install -r requirements.txt
+
+2.Setup your database credentials in settings.py
+
+Example:
+
+DATABASES = {
+            'default': {
+                'ENGINE': 'djongo',
+                'NAME': 'accesscontrolsys', 
+            }
+} 
+
+3.python manage.py migrate
+
+4.python manage.py runserver
+
+
 API Endpoints
 ---------------------------------------------------
 Note: Please look through the steps below to know how following API endpoints are working:
@@ -33,24 +53,6 @@ To delete permission for a user on an organisation(method:POST): http://127.0.0.
 To list out all the permissions for all the users on each organisation(method:GET): http://127.0.0.1:8000/api/permissionslist/
 
 
-To run the code follow the following steps:
----------------------------------------------------
-1.pip install -r requirements.txt
-
-2.Setup your database credentials in settings.py
-
-Example:
-
-DATABASES = {
-            'default': {
-                'ENGINE': 'djongo',
-                'NAME': 'accesscontrolsys', 
-            }
-} 
-
-3.python manage.py migrate
-
-4.python manage.py runserver
 
 
 Let's look each API endpoint by taking example cases:
@@ -175,3 +177,29 @@ To list out all the permissions for all the users on each organisation
 ![image](https://user-images.githubusercontent.com/62210359/233953416-18af2ab8-cf85-40b5-9d89-dba1cd05d3fb.png)
 
 
+
+
+Code and API structure
+---------------------------------------
+
+1.Firstly I connected my django project to MongoDB with the help of djongo and pymongo packages.
+
+2.I created models for users and organisations.Though django provides built in table for users ,but I created a separate table for that.
+
+3.The ID for each user and organisation will be provided automatically when stored in database.
+
+4.I created serializers for User and Organisation model.
+
+5.Then, created API endpoints for User and Organisation to take data from a POST request and store it in the database.
+
+6.For GET request, I designed and added functionality like providing limit and offset.
+
+7.To write the logic, I took help from the documentation and implemented API using GenericAPIView(ListCreateAPIView,CreateAPIView,etc.)
+
+8.To allot different permissions to different users for an organisation or multiple organisations, I created separate model called Permission.
+
+9.In this, I added functionalities like creating or updating permissions and deleting permissions.
+
+10.For that, I defined serializers i.e. PermissionSerializers to create/update permission and DeletePermissionSerializers to delete permission.
+
+11.Then, created API endpoints for permissions.
